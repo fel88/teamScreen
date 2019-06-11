@@ -300,9 +300,7 @@ namespace teamScreenServer
                 pictureBox1.Focus();
             }
             Redraw();            
-        }
-
-
+        }        
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
@@ -322,12 +320,7 @@ namespace teamScreenServer
             Form2 f = new Form2();
             f.Show();
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (CurrentClient != null)

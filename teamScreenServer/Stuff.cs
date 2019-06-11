@@ -43,15 +43,7 @@ namespace teamScreenServer
             var ret = new Bitmap(imageWidth, imageHeight, PixelFormat.Format32bppArgb);
             SetRGBValues(ret, bb1);
 
-            return ret;
-            int columns = imageWidth;
-            int rows = imageHeight;
-            int stride = columns * 4;
-
-            Bitmap im = new Bitmap(columns, rows, stride,
-                PixelFormat.Format32bppArgb,
-                Marshal.UnsafeAddrOfPinnedArrayElement(bb1, 0));
-            return im;
+            return ret;            
         }
 
         public static Bitmap CloneViaCopyBytes(Bitmap bb)
@@ -59,7 +51,6 @@ namespace teamScreenServer
             var data = GetRGBValues(bb);
             return BmpFromByteArray(bb.Width, bb.Height, data);
         }
-
 
         public static Bitmap AddDiff(Bitmap b1, Bitmap d1)
         {
