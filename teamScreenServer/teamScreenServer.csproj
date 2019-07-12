@@ -82,10 +82,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\teamScreenClient\teamScreenClient.csproj">
-      <Project>{78529af6-ced9-4e5f-923b-6603f591aa4e}</Project>
-      <Name>teamScreenClient</Name>
-    </ProjectReference>
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

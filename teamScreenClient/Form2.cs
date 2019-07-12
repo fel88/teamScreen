@@ -24,8 +24,18 @@ namespace teamScreenClient
             var doc = XDocument.Load("config.xml");
             foreach (var descendant in doc.Descendants("setting"))
             {
+                var nm = descendant.Attribute("name").Value;
                 var vl = descendant.Attribute("value").Value;
-                textBox1.Text = vl;
+                switch (nm)
+                {
+                    case "port":
+                        textBox3.Text = vl;
+                        break;
+                    case "ip":
+                        textBox1.Text = vl;
+                        break;
+                }
+                
             }
         }
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using teamScreenClient;
+using System.Xml.Linq;
 
 
 namespace teamScreenServer
@@ -16,6 +16,8 @@ namespace teamScreenServer
         public Form1()
         {
             InitializeComponent();
+            LoadSettings();
+            label3.Text = Server.port + "";
             Server.StartServer();
             Server.ImageCaptured += img1;         
 
@@ -30,6 +32,22 @@ namespace teamScreenServer
             gr = Graphics.FromImage(bmp);
             pictureBox1.Image = bmp;
 
+        }
+
+        void LoadSettings()
+        {
+            var doc = XDocument.Load("config.xml");
+            foreach (var item in doc.Descendants("setting"))
+            {
+                var nm = item.Attribute("name").Value;
+                var vl = item.Attribute("value").Value;
+                switch (nm)
+                {
+                    case "port":
+                        Server.port = int.Parse(vl);
+                        break;
+                }
+            }
         }
 
         private void PictureBox1_MouseWheel(object sender, MouseEventArgs e)
@@ -317,10 +335,15 @@ namespace teamScreenServer
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2();
-            f.Show();
+            //Form2 f = new Form2();
+            //f.Show();
         }
-        
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (CurrentClient != null)
